@@ -1,6 +1,7 @@
 const express = require("express");
 const mysql = require("mysql2/promise");
 const admin = require("firebase-admin");
+const cors = require("cors");
 
 // Cargar credenciales de Firebase
 const serviceAccount = require("./serviceAccountKey.json");
@@ -23,6 +24,9 @@ const db = mysql.createPool({
 
 const app = express();
 const PORT = 3002;
+
+// Enable CORS for all routes
+app.use(cors());
 
 // Función para obtener datos de Firebase de las últimas 24 horas
 async function getFirebaseData(collectionName) {
